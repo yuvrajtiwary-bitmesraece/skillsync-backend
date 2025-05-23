@@ -1,3 +1,4 @@
+
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -18,7 +19,8 @@ exports.register = async (req, res) => {
 
     res.status(201).json({ msg: 'User registered successfully ✅' });
   } catch (err) {
-    res.status(500).json({ msg: 'Server Error', err });
+    console.error('Register error:', err);
+    res.status(500).json({ msg: 'Server Error', error: err.message });
   }
 };
 
@@ -27,15 +29,32 @@ exports.login = async (req, res) => {
 
   try {
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ msg: 'Invalid credentials' });
+    if (!user) {
+      return res.status(400).json({ msg: 'Invalid credentials' });
+    }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
+    if (!isMatch) {
+      return res.status(400).json({ msg: 'Invalid credentials' });
+    }
+
+    if (!JWT_SECRET) {
+      console.error('JWT_SECRET is not defined');
+      return res.status(500).json({ msg: 'Server configuration error' });
+    }
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '2h' });
-
-    res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
+    
+    res.json({
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email
+      }
+    });
   } catch (err) {
-    res.status(500).json({ msg: 'Server Error', err });
+    console.error('Login error:', err);
+    res.status(500).json({ msg: 'Server Error', error: err.message });
   }
 };
