@@ -9,7 +9,7 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
-// 👇 Auth Route Include
+// Auth routes
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 
