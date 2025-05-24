@@ -1,6 +1,6 @@
 # SkillSync Backend
 
-SkillSync is a Node.js-based RESTful backend for a skill management and user authentication platform. It handles secure user registration, login, profile management, and skill tracking via RESTful APIs using Express, MongoDB, and JWT.
+SkillSync backend is a Node.js-based RESTful backend for a skill management and user authentication platform. It handles secure user registration, login, profile management, and skill tracking via RESTful APIs using Express, MongoDB, and JWT.
 
 ## Tech Stack
 
