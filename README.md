@@ -141,7 +141,7 @@ npm start
 - **CORS Configuration:**  
   `cors` middleware enables controlled cross-origin resource sharing, mitigating risks of unauthorized API access from untrusted domains.
 
-  ## Future Scope
+## Future Scope
 
 - **Role-Based Access Control (RBAC):**  
   Implement user roles (admin, user, etc.) with granular permissions for enhanced security and functionality.
