@@ -167,3 +167,7 @@ npm start
 - **API Documentation:**  
   Use Swagger or Postman to generate comprehensive API documentation for easier onboarding and maintenance.
 
+## Thank You
+
+Grateful for your time and attention — it truly means a lot!
+
